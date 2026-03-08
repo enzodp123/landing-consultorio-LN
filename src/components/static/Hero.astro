@@ -1,0 +1,42 @@
+---
+import arrow from '../../assets/icons/arrow-right.svg';
+import heroImg from '../../assets/images/hero-img.jpg';
+import checkIcon from '../../assets/icons/check-iconv2.svg';
+---
+
+
+<section class="w-full bg-bg h-[90vh] justify-center flex">
+
+    <div class="w-[75%] flex flex-row mt-24">
+
+        <div class="w-full flex flex-col gap-8 px-20">
+            <h1 class="text-6xl font-bold text-secondary">Recuperá tu <span class="text-text-secondary">Movimiento</span> y Bienestar</h1>
+            <p class="text-text text-lg">Te acompañamos en tu proceso de rehabilitación con atención personalizada y un enfoque integral en tu bienestar.
+                <br>
+                    Obras sociales y atención particular.</p>
+                <div class="flex flex-row gap-4">
+                <button class="bg-primary flex flex-row rounded-4xl px-6.5 py-3.5 gap-2">
+                <a href="" class="text-white text-base">Pedir Turno</a>
+                <img src={arrow.src} alt="Flecha" class="">
+            </button>
+            <button class="bg-white border border-[#E5E7EB] rounded-4xl px-6.5 py-3.5">
+                <a href="" class="text-[#374151] text-base">Ver Especialidades</a>
+            </button>
+            </div>
+            
+        </div>
+
+        <div class="relative">
+            <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-primary rounded-full -z-10 "></div>
+                <img src={heroImg.src} alt="Imagen de Hero">
+                <div>
+                    <img src={checkIcon.src} alt="Icono de Verificación">
+                    <h3>Pacientes Felices</h3>
+                    <p>+2000</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
