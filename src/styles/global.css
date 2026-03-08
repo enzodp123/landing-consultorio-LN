@@ -1,1 +1,24 @@
+@import "@fontsource/poppins/400.css";
+@import "@fontsource/poppins/500.css";
+@import "@fontsource/poppins/600.css";
+@import "@fontsource/poppins/700.css";
+
 @import "tailwindcss";
+
+@theme{
+    --color-primary: #254669;
+    --color-secondary: #244568;
+    --color-accent: #374151;
+    --color-title: #111827;
+    --color-text: #4B5563;
+    --color-text-secondary: #09A7A3;
+    --color-bg: #F0F9FF;
+    --color-bg-light: #FFFFFF;
+    --font-family-sans: 'Poppins', system-ui, sans-serif;
+}
+
+@layer base {
+    body {
+        @apply font-sans;
+    }
+}
