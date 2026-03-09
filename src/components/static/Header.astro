@@ -17,7 +17,7 @@ const navItems = [
         <img src={logo.src} alt="Logo de Kinesiología LN" class="w-12" />
         <span class="font-bold text-xl pl-2 text-title">Kinesiología</span>
       </div>
-      <ul class="flex flex-row items-center gap-8">
+      <ul class="hidden lg:flex flex-row items-center gap-8">
         {
           navItems.map((item) => (
             <li>
@@ -33,10 +33,120 @@ const navItems = [
       </ul>
       <a
         href="/turno"
-        class="bg-secondary rounded-lg px-5.5 py-2.5 text-base font-bold text-white"
+        class="hidden lg:flex bg-secondary rounded-lg px-5.5 py-2.5 text-base font-bold text-white"
       >
         Reservar Turno
       </a>
+
+      {/* Mobile Hamburger Button */}
+      <button
+        id="mobile-menu-btn"
+        class="lg:hidden flex flex-col justify-center items-center w-8 h-8 focus:outline-none"
+        aria-label="Toggle mobile menu"
+      >
+        <span
+          class="bg-secondary block transition-all duration-300 ease-out h-[3px] w-6 rounded-sm -translate-y-1.5"
+          id="line1"></span>
+        <span
+          class="bg-secondary block transition-all duration-300 ease-out h-[3px] w-6 rounded-sm opacity-100"
+          id="line2"></span>
+        <span
+          class="bg-secondary block transition-all duration-300 ease-out h-[3px] w-6 rounded-sm translate-y-1.5"
+          id="line3"></span>
+      </button>
     </nav>
   </div>
+
+  {/* Mobile Menu Overlay */}
+  <div
+    id="mobile-menu"
+    class="fixed inset-0 bg-bg z-40 transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden pt-24 pb-8 px-8 flex flex-col justify-between"
+  >
+    <button
+      id="close-menu-btn"
+      class="absolute top-6 right-[5%] sm:right-[10%] w-8 h-8 flex items-center justify-center text-secondary focus:outline-none"
+      aria-label="Close mobile menu"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="2.5"
+        stroke="currentColor"
+        class="w-8 h-8"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+    <ul class="flex flex-col gap-6 mt-8">
+      {
+        navItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class="text-2xl font-bold text-secondary hover:text-[#00BFA5] transition-colors mobile-link"
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <div class="mt-auto">
+      <a
+        href="/turno"
+        class="block w-full bg-secondary text-center rounded-lg px-6 py-4 text-lg font-bold text-white shadow-md active:scale-95 transition-transform"
+      >
+        Reservar Turno
+      </a>
+    </div>
+  </div>
 </header>
+
+<script>
+  const mobileBtn = document.getElementById("mobile-menu-btn");
+  const closeBtn = document.getElementById("close-menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const mobileLinks = document.querySelectorAll(".mobile-link");
+  const line1 = document.getElementById("line1");
+  const line2 = document.getElementById("line2");
+  const line3 = document.getElementById("line3");
+
+  const toggleMenu = () => {
+    const isMenuOpen = !mobileMenu?.classList.contains("translate-x-full");
+
+    // Toggle menu
+    mobileMenu?.classList.toggle("translate-x-full");
+    document.body.classList.toggle("overflow-hidden");
+
+    // Animate hamburger to X
+    if (!isMenuOpen) {
+      line1?.classList.replace("-translate-y-1.5", "translate-y-0");
+      line1?.classList.add("rotate-45");
+      line2?.classList.replace("opacity-100", "opacity-0");
+      line3?.classList.replace("translate-y-1.5", "translate-y-0");
+      line3?.classList.add("-rotate-45");
+    } else {
+      line1?.classList.remove("rotate-45");
+      line1?.classList.replace("translate-y-0", "-translate-y-1.5");
+      line2?.classList.replace("opacity-0", "opacity-100");
+      line3?.classList.remove("-rotate-45");
+      line3?.classList.replace("translate-y-0", "translate-y-1.5");
+    }
+  };
+
+  mobileBtn?.addEventListener("click", toggleMenu);
+  closeBtn?.addEventListener("click", toggleMenu);
+
+  // Close menu when clicking a link
+  mobileLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      if (!mobileMenu?.classList.contains("translate-x-full")) {
+        toggleMenu();
+      }
+    });
+  });
+</script>
