@@ -11,22 +11,22 @@ const navItems = [
 ---
 
 <header class="flex w-full h-22.5 bg-bg sticky top-0 z-10">
-    <div class="w-[75%] mx-auto">
+    <div class="w-full max-w-screen-xl mx-auto">
         <nav class="flex flex-row items-center justify-between px-8 py-6">
             <div class="flex flex-row items-center">
-                <img src={logo.src} alt="Logo" class="w-12 "/>
+                <img src={logo.src} alt="Logo de Kinesiología LN" class="w-12 "/>
                 <span class="font-bold text-xl pl-2 text-title">Kinesiología</span>
             </div>
             <ul class="flex flex-row items-center gap-8">
                 {navItems.map((item) => (
                     <li>
-                        <a href={item.href} class="text-text hover:text-(--color-) transition-colors font-medium">{item.label}</a>
+                        <a href={item.href} class="text-text hover:text-secondary transition-colors font-medium">{item.label}</a>
                     </li>
                 ))}
             </ul>
-            <button class="bg-secondary rounded-lg px-5.5 py-2.5">
-                <a href="turno" class="text-base font-bold text-white">Reservar Turno</a>
-            </button>
+            <a href="/turno" class="bg-secondary rounded-lg px-5.5 py-2.5 text-base font-bold text-white">
+                Reservar Turno
+            </a>
         </nav>
     </div>
     

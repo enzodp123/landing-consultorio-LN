@@ -1,42 +1,73 @@
 ---
-import arrow from '../../assets/icons/arrow-right.svg';
-import heroImg from '../../assets/images/hero-img.jpg';
-import checkIcon from '../../assets/icons/check-iconv2.svg';
+import arrow from "../../assets/icons/arrow-right.svg";
+import heroImg from "../../assets/images/hero-img.jpg";
+import checkIcon from "../../assets/icons/check-iconv2.svg";
 ---
 
-
-<section class="w-full bg-bg h-[90vh] justify-center flex">
-
-    <div class="w-[75%] flex flex-row mt-24">
-
-        <div class="w-full flex flex-col gap-8 px-20">
-            <h1 class="text-6xl font-bold text-secondary">Recuperá tu <span class="text-text-secondary">Movimiento</span> y Bienestar</h1>
-            <p class="text-text text-lg">Te acompañamos en tu proceso de rehabilitación con atención personalizada y un enfoque integral en tu bienestar.
-                <br>
-                    Obras sociales y atención particular.</p>
-                <div class="flex flex-row gap-4">
-                <button class="bg-primary flex flex-row rounded-4xl px-6.5 py-3.5 gap-2">
-                <a href="" class="text-white text-base">Pedir Turno</a>
-                <img src={arrow.src} alt="Flecha" class="">
-            </button>
-            <button class="bg-white border border-[#E5E7EB] rounded-4xl px-6.5 py-3.5">
-                <a href="" class="text-[#374151] text-base">Ver Especialidades</a>
-            </button>
-            </div>
-            
-        </div>
-
-        <div class="relative">
-            <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-primary rounded-full -z-10 "></div>
-                <img src={heroImg.src} alt="Imagen de Hero">
-                <div>
-                    <img src={checkIcon.src} alt="Icono de Verificación">
-                    <h3>Pacientes Felices</h3>
-                    <p>+2000</p>
-                </div>
-            </div>
-        </div>
-
+<section class="w-full bg-bg h-[90vh] justify-center flex items-center">
+  <div class="w-[75%] flex flex-row">
+    <div class="w-full flex flex-col gap-8 px-20">
+      <h1 class="text-6xl font-bold text-secondary">
+        Recuperá tu <span class="text-text-secondary">Movimiento</span> y Bienestar
+      </h1>
+      <p class="text-text text-lg">
+        Te acompañamos en tu proceso de rehabilitación con atención
+        personalizada y un enfoque integral en tu bienestar.
+        <br />
+        Obras sociales y atención particular.
+      </p>
+      <div class="flex flex-row gap-4">
+        <button
+          class="bg-primary flex flex-row rounded-4xl px-6.5 py-3.5 gap-2"
+        >
+          <a href="" class="text-white text-base">Pedir Turno</a>
+          <img src={arrow.src} alt="Flecha" class="" />
+        </button>
+        <button
+          class="bg-white border border-[#E5E7EB] rounded-4xl px-6.5 py-3.5"
+        >
+          <a href="" class="text-[#374151] text-base">Ver Especialidades</a>
+        </button>
+      </div>
     </div>
 
+    <div class="w-full relative flex justify-center items-center pl-10">
+      <div
+        class="absolute top-0 right-0 w-[400px] h-[400px] bg-primary rounded-full -z-10 opacity-30 blur-2xl"
+      >
+      </div>
+
+      <div class="relative group">
+        <!-- Imagen principal con rotación -->
+        <img
+          src={heroImg.src}
+          alt="Imagen de Hero"
+          class="rounded-[2.5rem] shadow-2xl object-cover w-[633px] transform transition-transform duration-500 rotate-2 group-hover:rotate-0 group-hover:scale-[1.02]"
+        />
+
+        <!-- Tarjeta superpuesta (Card) -->
+        <div
+          class="absolute -bottom-10 -left-12 bg-white rounded-2xl shadow-xl p-5 flex items-center gap-4 z-10 transition-transform duration-500 group-hover:-translate-y-2"
+        >
+          <div
+            class="bg-[#E6F5F5] p-3 rounded-full flex items-center justify-center"
+          >
+            <img
+              src={checkIcon.src}
+              alt="Icono de Verificación"
+              class="w-6 h-6"
+            />
+          </div>
+          <div class="flex flex-col">
+            <h3
+              class="text-xs text-text font-medium uppercase tracking-wider mb-1"
+            >
+              Pacientes Felices
+            </h3>
+            <p class="text-2xl font-bold text-secondary leading-none">+2000</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
