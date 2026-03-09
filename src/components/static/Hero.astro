@@ -4,10 +4,15 @@ import heroImg from "../../assets/images/hero-img.jpg";
 import checkIcon from "../../assets/icons/check-iconv2.svg";
 ---
 
-<section class="w-full bg-bg h-[90vh] justify-center flex items-center">
-  <div class="w-[75%] flex flex-row">
-    <div class="w-[75%] flex flex-col gap-8 px-20">
-      <h1 class="text-6xl font-bold text-secondary">
+<section
+  class="w-full bg-bg h-[90vh] min-h-[600px] flex justify-center items-center overflow-hidden"
+>
+  <div
+    class="w-[90%] lg:w-[75%] max-w-[1440px] mx-auto flex flex-col md:flex-row items-center gap-12"
+  >
+    {/* Left Content */}
+    <div class="w-full md:w-1/2 flex flex-col gap-8 md:pr-10">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-secondary">
         Recuperá tu <span class="text-text-secondary">Movimiento</span> y Bienestar
       </h1>
       <p class="text-text text-lg">
@@ -16,24 +21,29 @@ import checkIcon from "../../assets/icons/check-iconv2.svg";
         <br />
         Obras sociales y atención particular.
       </p>
-      <div class="flex flex-row gap-4">
-        <button
-          class="bg-primary flex flex-row rounded-4xl px-6.5 py-3.5 gap-2"
+      <div class="flex flex-row gap-4 items-center">
+        <a
+          href="/turno"
+          class="bg-primary flex flex-row items-center justify-center rounded-4xl px-8 py-4 gap-3 text-white text-base md:text-lg font-medium hover:bg-secondary transition-colors"
         >
-          <a href="" class="text-white text-base">Pedir Turno</a>
-          <img src={arrow.src} alt="Flecha" class="" />
-        </button>
-        <button
-          class="bg-white border border-[#E5E7EB] rounded-4xl px-6.5 py-3.5 hover:bg-gray-50 transition-colors"
+          <span>Pedir Turno</span>
+          <img src={arrow.src} alt="Flecha" class="w-5 h-5 flex-shrink-0" />
+        </a>
+        <a
+          href="#servicios"
+          class="bg-white border border-[#E5E7EB] rounded-4xl px-8 py-4 text-[#374151] text-base md:text-lg font-medium hover:bg-gray-50 transition-colors"
         >
-          <a href="" class="text-[#374151] text-base">Ver Tratamientos</a>
-        </button>
+          Ver Tratamientos
+        </a>
       </div>
     </div>
 
-    <div class="w-full relative flex justify-center items-center pl-10">
+    {/* Right Content */}
+    <div
+      class="w-full md:w-1/2 relative flex justify-center items-center mt-12 md:mt-0"
+    >
       <div
-        class="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-text-secondary rounded-full -z-10 opacity-15 blur-3xl"
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[450px] md:h-[450px] bg-text-secondary rounded-full -z-10 opacity-15 blur-3xl pointer-events-none"
       >
       </div>
 
@@ -41,8 +51,8 @@ import checkIcon from "../../assets/icons/check-iconv2.svg";
         <!-- Imagen principal con rotación -->
         <img
           src={heroImg.src}
-          alt="Imagen de Hero"
-          class="rounded-[2.5rem] shadow-2xl object-cover w-[633px] transform transition-transform duration-500 rotate-2 group-hover:rotate-0 group-hover:scale-[1.02]"
+          alt="Profesional kinesiologa realizando tratamiento"
+          class="rounded-[2.5rem] shadow-2xl object-cover w-full max-w-[500px] lg:max-w-[633px] transform transition-transform duration-500 rotate-2 group-hover:rotate-0 group-hover:scale-[1.02]"
         />
 
         <!-- Tarjeta superpuesta (Card) -->

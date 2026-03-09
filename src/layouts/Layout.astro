@@ -1,28 +1,42 @@
 ---
-import '../styles/global.css';
+import "../styles/global.css";
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="../../public/favicon.svg"/>
+    <meta name="generator" content={Astro.generator} />
+    <title>Kinesiología LN | Recuperá tu Movimiento y Bienestar</title>
+    <meta
+      name="description"
+      content="Kinesiología LN ofrece servicios profesionales de rehabilitación traumatológica y estética. Tratamientos personalizados particulares y por obras sociales."
+    />
+    <meta
+      property="og:title"
+      content="Kinesiología LN | Recuperá tu Movimiento y Bienestar"
+    />
+    <meta
+      property="og:description"
+      content="Kinesiología LN ofrece servicios profesionales de rehabilitación traumatológica y estética. Tratamientos personalizados particulares y por obras sociales."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Kinesiología LN" />
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-		font-family: Poppins, sans-serif;
-	}
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    min-height: 100vh;
+    font-family: Poppins, sans-serif;
+  }
 </style>
