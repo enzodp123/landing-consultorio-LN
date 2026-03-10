@@ -5,17 +5,17 @@ const navItems = [
   { label: "Servicios", href: "#servicios" },
   { label: "Turno Online", href: "#turno-online" },
   { label: "Ubicación", href: "#ubicacion" },
-  { label: "Galeria", href: "#galeria" },
+  { label: "Galería", href: "#galeria" },
   { label: "Contacto", href: "#contacto" },
 ];
 ---
 
-<header class="flex w-full h-22.5 bg-bg sticky top-0 z-50 transition-shadow">
+<header class="flex w-full h-22.5 bg-fondo sticky top-0 z-50 transition-shadow">
   <div class="w-[90%] lg:w-[75%] max-w-[1440px] mx-auto">
     <nav class="flex flex-row items-center justify-between py-6">
       <div class="flex flex-row items-center">
         <img src={logo.src} alt="Logo de Kinesiología LN" class="w-12" />
-        <span class="font-bold text-xl pl-2 text-title">Kinesiología</span>
+        <span class="font-bold text-xl pl-2 text-titulos">Kinesiología</span>
       </div>
       <ul class="hidden xl:flex flex-row items-center gap-8">
         {
@@ -23,7 +23,7 @@ const navItems = [
             <li>
               <a
                 href={item.href}
-                class="text-text hover:text-secondary transition-colors font-medium"
+                class="text-parrafos hover:text-titulos transition-colors font-medium"
               >
                 {item.label}
               </a>
@@ -33,7 +33,7 @@ const navItems = [
       </ul>
       <a
         href="/turno"
-        class="hidden xl:flex items-center justify-center bg-secondary rounded-lg px-6 py-2.5 text-base font-bold text-white whitespace-nowrap"
+        class="hidden xl:flex items-center justify-center bg-titulos rounded-lg px-6 py-2.5 text-base font-bold text-white whitespace-nowrap"
       >
         Reservar Turno
       </a>
@@ -45,13 +45,13 @@ const navItems = [
         aria-label="Toggle mobile menu"
       >
         <span
-          class="bg-secondary block transition-all duration-300 ease-out h-[3px] w-6 rounded-sm -translate-y-1.5"
+          class="bg-titulos block transition-all duration-300 ease-out h-[3px] w-6 rounded-sm -translate-y-1.5"
           id="line1"></span>
         <span
-          class="bg-secondary block transition-all duration-300 ease-out h-[3px] w-6 rounded-sm opacity-100"
+          class="bg-titulos block transition-all duration-300 ease-out h-[3px] w-6 rounded-sm opacity-100"
           id="line2"></span>
         <span
-          class="bg-secondary block transition-all duration-300 ease-out h-[3px] w-6 rounded-sm translate-y-1.5"
+          class="bg-titulos block transition-all duration-300 ease-out h-[3px] w-6 rounded-sm translate-y-1.5"
           id="line3"></span>
       </button>
     </nav>
@@ -60,11 +60,11 @@ const navItems = [
   {/* Mobile Menu Overlay */}
   <div
     id="mobile-menu"
-    class="fixed inset-0 bg-bg z-40 transform translate-x-full transition-transform duration-300 ease-in-out xl:hidden pt-24 pb-8 px-8 flex flex-col justify-between"
+    class="fixed inset-0 bg-fondo z-40 transform translate-x-full transition-transform duration-300 ease-in-out xl:hidden pt-24 pb-8 px-8 flex flex-col justify-between"
   >
     <button
       id="close-menu-btn"
-      class="absolute top-6 right-[5%] sm:right-[10%] w-8 h-8 flex items-center justify-center text-secondary focus:outline-none"
+      class="absolute top-6 right-[5%] sm:right-[10%] w-8 h-8 flex items-center justify-center text-titulos focus:outline-none"
       aria-label="Close mobile menu"
     >
       <svg
@@ -87,7 +87,7 @@ const navItems = [
           <li>
             <a
               href={item.href}
-              class="text-2xl font-bold text-secondary hover:text-[#00BFA5] transition-colors mobile-link"
+              class="text-2xl font-bold text-titulos hover:text-primario transition-colors mobile-link"
             >
               {item.label}
             </a>
@@ -98,7 +98,7 @@ const navItems = [
     <div class="mt-auto">
       <a
         href="https://lnkinesiologia.site.agendapro.com/ar/sucursal/438392?fbclid=PAb21jcAQOyGRleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAadiWt7qF8JpBdmFJBK6rXJBuPjxiqVf372DtFCt3j8cshG8tdU0Xp91U0xHjQ_aem_6YX3DHUA-GxBmfvKHSOxEA&utm_content=link_in_bio&utm_medium=social&utm_source=ig"
-        class="block w-full bg-secondary text-center rounded-lg px-6 py-4 text-lg font-bold text-white shadow-md active:scale-95 transition-transform"
+        class="block w-full bg-titulos text-center rounded-lg px-6 py-4 text-lg font-bold text-white shadow-md active:scale-95 transition-transform"
       >
         Reservar Turno
       </a>

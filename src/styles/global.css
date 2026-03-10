@@ -9,10 +9,13 @@
 
 @layer base {
   body {
-    @apply font-sans bg-bg text-text;
+    @apply font-sans;
+    background-color: #F0F9FF;
+    color: #111827;
   }
 
   html {
     scroll-behavior: smooth;
   }
 }
+
