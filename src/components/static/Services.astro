@@ -48,257 +48,456 @@ const esteticaServices = [
     link: "/turno",
   },
 ];
+
+// Group into chunks of 3 (for mobile/tablet slides)
+function chunk<T>(arr: T[], size: number): T[][] {
+  const result: T[][] = [];
+  for (let i = 0; i < arr.length; i += size)
+    result.push(arr.slice(i, i + size));
+  return result;
+}
+
+const kineChunks = chunk(kinesiologiaServices, 3);
+const esteticaChunks = chunk(esteticaServices, 3);
 ---
 
-<section
-  class="w-full bg-bg py-24 flex justify-center items-center border-t border-slate-100"
->
-  <div class="w-[90%] lg:w-[75%] max-w-[1440px] mx-auto flex flex-col gap-8">
+<section id="servicios" class="services-section">
+  <div class="services-container">
     <!-- Header -->
-    <div class="mb-4 text-center lg:text-left">
-      <span
-        class="block text-xs md:text-sm font-bold text-text-secondary uppercase tracking-widest mb-2"
-      >
-        ESPECIALIDADES
-      </span>
-      <h2 class="text-4xl md:text-5xl font-bold text-secondary mb-4">
-        Servicios
-      </h2>
-      <p class="text-secondary font-medium text-base md:text-lg">
-        Tu bienestar es nuestra prioridad, <span
-          class="text-text-secondary block md:inline"
+    <div class="services-header">
+      <span class="services-label">ESPECIALIDADES</span>
+      <h2 class="services-title">Servicios</h2>
+      <p class="services-subtitle">
+        Tu bienestar es nuestra prioridad,{" "}
+        <span class="services-subtitle-highlight"
           >¡Cada sesión está pensada para vos!</span
         >
       </p>
-      <p class="text-text text-sm md:text-base mt-2">
+      <p class="services-description">
         Trabajamos con obras sociales y también de manera particular.
       </p>
     </div>
 
     <!-- Tabs -->
-    <div
-      class="flex flex-col sm:flex-row gap-4 sm:gap-8 border-b border-gray-200 mb-6"
-    >
-      <button
-        id="tab-kine"
-        class="tab-btn pb-4 text-text-secondary font-bold text-base md:text-lg border-b-2 border-text-secondary transition-colors text-left sm:text-center"
-      >
+    <div class="services-tabs">
+      <button id="tab-kine" class="tab-btn tab-active">
         Kinesiología y Rehabilitación
       </button>
-      <button
-        id="tab-estetica"
-        class="tab-btn pb-4 text-text font-medium text-base md:text-lg border-b-2 border-transparent hover:text-secondary transition-colors text-left sm:text-center"
-      >
+      <button id="tab-estetica" class="tab-btn tab-inactive">
         Estética y Salud
       </button>
     </div>
 
     <!-- Content: Kinesiología -->
-    <div
-      id="content-kine"
-      class="grid grid-rows-3 grid-flow-col gap-4 md:gap-8 overflow-x-auto snap-x snap-mandatory hide-scrollbars pb-8"
-    >
+    <div id="content-kine" class="services-slider">
       {
-        kinesiologiaServices.map((service) => (
-          <div class="w-[85vw] md:w-[45vw] lg:w-[30vw] min-h-[160px] snap-start shrink-0 bg-white rounded-2xl p-6 shadow-sm flex flex-col items-start border border-gray-100 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 relative group overflow-hidden">
-            <div class="absolute top-0 left-0 w-full h-[6px] bg-transparent transition-colors duration-300 group-hover:bg-text-secondary" />
-            <div class="bg-[#E6F5F5] p-3 rounded-full mb-6">
-              <img src={cardIcon.src} alt="Servicio Icon" class="w-6 h-6" />
-            </div>
-            <h4 class="text-xl font-bold text-secondary mb-3 leading-tight group-hover:text-text-secondary transition-colors">
-              {service.title}
-            </h4>
-            <p class="text-text text-sm mb-6 grow leading-relaxed">
-              {service.description}
-            </p>
-            <a
-              href={service.link}
-              class="text-text-secondary font-medium text-sm flex items-center gap-2 hover:opacity-80 transition-opacity mt-auto"
-            >
-              Reservar turno <span class="text-lg leading-none">&rarr;</span>
-            </a>
+        kineChunks.map((group) => (
+          <div class="slide">
+            {group.map((service) => (
+              <div class="service-card">
+                <div class="card-top-bar" />
+                <div class="card-icon-wrapper">
+                  <img
+                    src={cardIcon.src}
+                    alt="Servicio Icon"
+                    class="card-icon"
+                  />
+                </div>
+                <h4 class="card-title">{service.title}</h4>
+                <p class="card-description">{service.description}</p>
+                <a href={service.link} class="card-link">
+                  Reservar turno <span>→</span>
+                </a>
+              </div>
+            ))}
           </div>
         ))
       }
     </div>
 
     <!-- Content: Estética -->
-    <div
-      id="content-estetica"
-      class="hidden grid-rows-3 grid-flow-col gap-4 md:gap-8 overflow-x-auto snap-x snap-mandatory hide-scrollbars pb-8"
-    >
+    <div id="content-estetica" class="services-slider hidden">
       {
-        esteticaServices.map((service) => (
-          <div class="w-[85vw] md:w-[45vw] lg:w-[30vw] min-h-[160px] snap-start shrink-0 bg-white rounded-2xl p-6 shadow-sm flex flex-col items-start border border-gray-100 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 relative group overflow-hidden">
-            <div class="absolute top-0 left-0 w-full h-[6px] bg-transparent transition-colors duration-300 group-hover:bg-text-secondary" />
-            <div class="bg-[#E6F5F5] p-3 rounded-full mb-6">
-              <img src={cardIcon.src} alt="Servicio Icon" class="w-6 h-6" />
-            </div>
-            <h4 class="text-xl font-bold text-secondary mb-3 leading-tight group-hover:text-text-secondary transition-colors">
-              {service.title}
-            </h4>
-            <p class="text-text text-sm mb-6 flex-grow leading-relaxed">
-              {service.description}
-            </p>
-            <a
-              href={service.link}
-              class="text-text-secondary font-medium text-sm flex items-center gap-2 hover:opacity-80 transition-opacity mt-auto"
-            >
-              Reservar turno <span class="text-lg leading-none">&rarr;</span>
-            </a>
+        esteticaChunks.map((group) => (
+          <div class="slide">
+            {group.map((service) => (
+              <div class="service-card">
+                <div class="card-top-bar" />
+                <div class="card-icon-wrapper">
+                  <img
+                    src={cardIcon.src}
+                    alt="Servicio Icon"
+                    class="card-icon"
+                  />
+                </div>
+                <h4 class="card-title">{service.title}</h4>
+                <p class="card-description">{service.description}</p>
+                <a href={service.link} class="card-link">
+                  Reservar turno <span>→</span>
+                </a>
+              </div>
+            ))}
           </div>
         ))
       }
     </div>
 
-    {/* Pagination Dots (Mobile/Tablet only) */}
-    <div
-      class="flex justify-center items-center gap-2 mt-4"
-      id="services-pagination"
-    >
-      <button
-        aria-label="Slide 1"
-        class="w-2.5 h-2.5 rounded-full bg-[#00BFA5] transition-colors service-dot"
-      ></button>
-      <button
-        aria-label="Slide 2"
-        class="w-2.5 h-2.5 rounded-full bg-slate-300 transition-colors service-dot"
-      ></button>
-      <button
-        aria-label="Slide 3"
-        class="w-2.5 h-2.5 rounded-full bg-slate-300 transition-colors service-dot"
-      ></button>
-      <button
-        aria-label="Slide 4"
-        class="w-2.5 h-2.5 rounded-full bg-slate-300 transition-colors service-dot hidden kine-dot"
-      ></button>
-      <button
-        aria-label="Slide 5"
-        class="w-2.5 h-2.5 rounded-full bg-slate-300 transition-colors service-dot hidden kine-dot"
-      ></button>
-      <button
-        aria-label="Slide 6"
-        class="w-2.5 h-2.5 rounded-full bg-slate-300 transition-colors service-dot hidden kine-dot"
-      ></button>
-    </div>
+    <!-- Dots (mobile + tablet) -->
+    <div id="services-dots" class="services-dots"></div>
   </div>
 </section>
 
-<script>
-  const tabKine = document.getElementById("tab-kine");
-  const tabEstetica = document.getElementById("tab-estetica");
-  const contentKine = document.getElementById("content-kine");
-  const contentEstetica = document.getElementById("content-estetica");
-  const serviceDots = document.querySelectorAll(".service-dot");
-  const kineDots = document.querySelectorAll(".kine-dot");
+<style>
+  .services-section {
+    width: 100%;
+    background-color: var(--color-bg, #f8fbfc);
+    padding: 5rem 0;
+    border-top: 1px solid #e2eaec;
+    display: flex;
+    justify-content: center;
+  }
 
-  // Observer setup for dots
-  const updateDots = (index: number) => {
-    serviceDots.forEach((d) => {
-      d.classList.remove("bg-[#00BFA5]");
-      d.classList.add("bg-slate-300");
-    });
-    if (serviceDots[index]) {
-      serviceDots[index].classList.remove("bg-slate-300");
-      serviceDots[index].classList.add("bg-[#00BFA5]");
+  .services-container {
+    width: 90%;
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  @media (min-width: 1024px) {
+    .services-container {
+      width: 75%;
     }
-  };
+  }
 
-  const setupObserver = (container: HTMLElement) => {
-    // Clear old observers if needed, but for simplicity we create a new one
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const children = Array.from(container.children);
-            const index = children.indexOf(entry.target as Element);
-            if (index !== -1) {
-              // Now we have 3 items per column; divide index by 3 to get the dot index
-              updateDots(Math.floor(index / 3));
-            }
-          }
-        });
-      },
-      {
-        root: container,
-        threshold: 0.6,
-      },
-    );
+  /* ─── Header ──────────────────────────────────────────── */
+  .services-header {
+    text-align: left;
+  }
 
-    Array.from(container.children).forEach((child) => {
-      observer.observe(child);
-    });
+  .services-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-text-secondary, #00bfa5);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
 
-    // Add click to scroll functionality
-    serviceDots.forEach((dot, index) => {
-      // Clone and replace to remove old event listeners when switching tabs
-      const newDot = dot.cloneNode(true) as HTMLElement;
-      dot.parentNode?.replaceChild(newDot, dot);
+  .services-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--color-secondary, #0e2d3d);
+    margin-bottom: 0.75rem;
+    line-height: 1.15;
+  }
 
-      newDot.addEventListener("click", () => {
-        // Target the first element of the specific column
-        const targetElement = container.children[index * 3] as HTMLElement;
-        if (targetElement) {
-          const scrollLeft = targetElement.offsetLeft - container.offsetLeft;
-          // Substract padding offset to align nicely
-          container.scrollTo({
-            left: scrollLeft - 16,
-            behavior: "smooth",
-          });
-        }
+  .services-subtitle {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-secondary, #0e2d3d);
+    margin-bottom: 0.25rem;
+  }
+
+  .services-subtitle-highlight {
+    color: var(--color-text-secondary, #00bfa5);
+  }
+
+  .services-description {
+    font-size: 0.9rem;
+    color: var(--color-text, #5a7a85);
+  }
+
+  /* ─── Tabs ────────────────────────────────────────────── */
+  .services-tabs {
+    display: flex;
+    gap: 2rem;
+    border-bottom: 1px solid #e2eaec;
+  }
+
+  .tab-btn {
+    padding-bottom: 1rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border: none;
+    border-bottom: 2px solid transparent;
+    background: none;
+    cursor: pointer;
+    transition:
+      color 0.2s,
+      border-color 0.2s;
+    white-space: nowrap;
+  }
+
+  .tab-active {
+    color: var(--color-text-secondary, #00bfa5);
+    font-weight: 700;
+    border-bottom-color: var(--color-text-secondary, #00bfa5);
+  }
+
+  .tab-inactive {
+    color: var(--color-text, #5a7a85);
+  }
+
+  .tab-inactive:hover {
+    color: var(--color-secondary, #0e2d3d);
+  }
+
+  /* ─── Slider (mobile + tablet) ────────────────────────── */
+  .services-slider {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    gap: 1.25rem;
+  }
+
+  .services-slider::-webkit-scrollbar {
+    display: none;
+  }
+
+  .services-slider.hidden {
+    display: none;
+  }
+
+  .slide {
+    /* Each slide = full width of the visible area */
+    flex: 0 0 100%;
+    width: 100%;
+    max-width: 100%;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-sizing: border-box;
+  }
+
+  /* ─── Desktop: flat 3-col grid ────────────────────────── */
+  @media (min-width: 1024px) {
+    .services-slider {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      overflow: visible;
+      scroll-snap-type: none;
+    }
+
+    /* "Unwrap" the slides so cards sit directly in the grid */
+    .slide {
+      display: contents;
+    }
+  }
+
+  /* ─── Card ────────────────────────────────────────────── */
+  .service-card {
+    position: relative;
+    background: #ffffff;
+    border: 1px solid #e8f0f2;
+    border-radius: 1rem;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition:
+      box-shadow 0.3s ease,
+      transform 0.3s ease;
+    overflow: hidden;
+    min-height: 160px;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .service-card:hover {
+    box-shadow: 0 12px 32px rgba(0, 191, 165, 0.12);
+    transform: translateY(-3px);
+  }
+
+  .card-top-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: transparent;
+    transition: background 0.3s ease;
+  }
+
+  .service-card:hover .card-top-bar {
+    background: var(--color-text-secondary, #00bfa5);
+  }
+
+  .card-icon-wrapper {
+    background: #e6f5f5;
+    padding: 0.65rem;
+    border-radius: 50%;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .card-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-secondary, #0e2d3d);
+    margin-bottom: 0.6rem;
+    line-height: 1.35;
+    transition: color 0.2s;
+    width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .service-card:hover .card-title {
+    color: var(--color-text-secondary, #00bfa5);
+  }
+
+  .card-description {
+    font-size: 0.85rem;
+    color: var(--color-text, #5a7a85);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
+    width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .card-link {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text-secondary, #00bfa5);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    text-decoration: none;
+    transition: opacity 0.2s;
+    margin-top: auto;
+  }
+
+  .card-link:hover {
+    opacity: 0.75;
+  }
+
+  /* ─── Dots ────────────────────────────────────────────── */
+  .services-dots {
+    display: none;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .services-dots.visible {
+    display: flex;
+  }
+
+  @media (min-width: 1024px) {
+    .services-dots {
+      display: none !important;
+    }
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #cbd5e1;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s;
+  }
+
+  .dot.active {
+    background: var(--color-text-secondary, #00bfa5);
+  }
+</style>
+
+<script>
+  const tabKine = document.getElementById("tab-kine")!;
+  const tabEstetica = document.getElementById("tab-estetica")!;
+  const contentKine = document.getElementById("content-kine") as HTMLElement;
+  const contentEstetica = document.getElementById(
+    "content-estetica",
+  ) as HTMLElement;
+  const dotsContainer = document.getElementById("services-dots")!;
+
+  function isSmall() {
+    return window.innerWidth < 1024;
+  }
+
+  function buildDots(slider: HTMLElement) {
+    dotsContainer.innerHTML = "";
+
+    if (!isSmall()) {
+      dotsContainer.classList.remove("visible");
+      return;
+    }
+
+    const slides = slider.querySelectorAll(".slide");
+    if (slides.length <= 1) {
+      dotsContainer.classList.remove("visible");
+      return;
+    }
+
+    dotsContainer.classList.add("visible");
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement("button");
+      dot.className = "dot" + (i === 0 ? " active" : "");
+      dot.setAttribute("aria-label", `Página ${i + 1}`);
+      dot.addEventListener("click", () => {
+        slider.scrollTo({ left: i * slider.clientWidth, behavior: "smooth" });
       });
-    });
-  };
-
-  if (tabKine && tabEstetica && contentKine && contentEstetica) {
-    // Initial setup
-    setupObserver(contentKine);
-    kineDots.forEach((dot) => dot.classList.remove("hidden"));
-
-    tabKine.addEventListener("click", () => {
-      tabKine.className =
-        "tab-btn pb-4 text-text-secondary font-bold text-lg border-b-2 border-text-secondary transition-colors";
-      tabEstetica.className =
-        "tab-btn pb-4 text-text font-medium text-lg border-b-2 border-transparent hover:text-secondary transition-colors";
-
-      contentKine.classList.remove("hidden");
-      contentKine.classList.add("grid");
-      contentEstetica.classList.add("hidden");
-      contentEstetica.classList.remove("grid");
-
-      // We divide by 3 because there are 3 items per column
-      serviceDots.forEach((dot, index) => {
-        if (index < Math.ceil(contentKine.children.length / 3)) {
-          dot.classList.remove("hidden");
-        } else {
-          dot.classList.add("hidden");
-        }
-      });
-      contentKine.scrollTo({ left: 0 }); // reset scroll
-      setTimeout(() => setupObserver(contentKine), 100);
-    });
-
-    tabEstetica.addEventListener("click", () => {
-      tabEstetica.className =
-        "tab-btn pb-4 text-text-secondary font-bold text-lg border-b-2 border-text-secondary transition-colors";
-      tabKine.className =
-        "tab-btn pb-4 text-text font-medium text-lg border-b-2 border-transparent hover:text-secondary transition-colors";
-
-      contentEstetica.classList.remove("hidden");
-      contentEstetica.classList.add("grid");
-      contentKine.classList.add("hidden");
-      contentKine.classList.remove("grid");
-
-      // We divide by 3 because there are 3 items per column
-      serviceDots.forEach((dot, index) => {
-        if (index < Math.ceil(contentEstetica.children.length / 3)) {
-          dot.classList.remove("hidden");
-        } else {
-          dot.classList.add("hidden");
-        }
-      });
-      contentEstetica.scrollTo({ left: 0 }); // reset scroll
-      setTimeout(() => setupObserver(contentEstetica), 100);
+      dotsContainer.appendChild(dot);
     });
   }
+
+  function syncDots(slider: HTMLElement) {
+    if (!isSmall()) return;
+    const index = Math.round(slider.scrollLeft / slider.clientWidth);
+    dotsContainer
+      .querySelectorAll(".dot")
+      .forEach((d, i) => d.classList.toggle("active", i === index));
+  }
+
+  function setupSlider(slider: HTMLElement) {
+    slider.scrollTo({ left: 0 });
+    buildDots(slider);
+    slider.onscroll = () => syncDots(slider);
+  }
+
+  tabKine.addEventListener("click", () => {
+    tabKine.className = "tab-btn tab-active";
+    tabEstetica.className = "tab-btn tab-inactive";
+    contentKine.classList.remove("hidden");
+    contentEstetica.classList.add("hidden");
+    setupSlider(contentKine);
+  });
+
+  tabEstetica.addEventListener("click", () => {
+    tabEstetica.className = "tab-btn tab-active";
+    tabKine.className = "tab-btn tab-inactive";
+    contentEstetica.classList.remove("hidden");
+    contentKine.classList.add("hidden");
+    setupSlider(contentEstetica);
+  });
+
+  // Initial
+  setupSlider(contentKine);
+
+  window.addEventListener("resize", () => {
+    const active = contentKine.classList.contains("hidden")
+      ? contentEstetica
+      : contentKine;
+    buildDots(active);
+  });
 </script>

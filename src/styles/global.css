@@ -11,4 +11,8 @@
   body {
     @apply font-sans bg-bg text-text;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
 }
