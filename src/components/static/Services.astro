@@ -55,34 +55,39 @@ const esteticaServices = [
 >
   <div class="w-[90%] lg:w-[75%] max-w-[1440px] mx-auto flex flex-col gap-8">
     <!-- Header -->
-    <div class="mb-4">
+    <div class="mb-4 text-center lg:text-left">
       <span
-        class="block text-sm font-bold text-text-secondary uppercase tracking-widest mb-2"
+        class="block text-xs md:text-sm font-bold text-text-secondary uppercase tracking-widest mb-2"
       >
         ESPECIALIDADES
       </span>
-      <h2 class="text-5xl font-bold text-secondary mb-4">Servicios</h2>
-      <p class="text-secondary font-medium text-lg">
-        Tu bienestar es nuestra prioridad, <span class="text-text-secondary"
+      <h2 class="text-4xl md:text-5xl font-bold text-secondary mb-4">
+        Servicios
+      </h2>
+      <p class="text-secondary font-medium text-base md:text-lg">
+        Tu bienestar es nuestra prioridad, <span
+          class="text-text-secondary block md:inline"
           >¡Cada sesión está pensada para vos!</span
         >
       </p>
-      <p class="text-text text-base mt-2">
+      <p class="text-text text-sm md:text-base mt-2">
         Trabajamos con obras sociales y también de manera particular.
       </p>
     </div>
 
     <!-- Tabs -->
-    <div class="flex gap-8 border-b border-gray-200 mb-6">
+    <div
+      class="flex flex-col sm:flex-row gap-4 sm:gap-8 border-b border-gray-200 mb-6"
+    >
       <button
         id="tab-kine"
-        class="tab-btn pb-4 text-text-secondary font-bold text-lg border-b-2 border-text-secondary transition-colors"
+        class="tab-btn pb-4 text-text-secondary font-bold text-base md:text-lg border-b-2 border-text-secondary transition-colors text-left sm:text-center"
       >
         Kinesiología y Rehabilitación
       </button>
       <button
         id="tab-estetica"
-        class="tab-btn pb-4 text-text font-medium text-lg border-b-2 border-transparent hover:text-secondary transition-colors"
+        class="tab-btn pb-4 text-text font-medium text-base md:text-lg border-b-2 border-transparent hover:text-secondary transition-colors text-left sm:text-center"
       >
         Estética y Salud
       </button>
