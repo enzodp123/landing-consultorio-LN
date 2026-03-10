@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 // Replace with the actual logo import path if different
-import logo from "../../assets/icons/logoLNblanco.svg";
+import logo from "../../assets/icons/logo-LN.svg";
 ---
 
 <footer class="bg-[#f4faff] pt-12 pb-8 border-t border-slate-100 mt-auto">
@@ -11,12 +11,7 @@ import logo from "../../assets/icons/logoLNblanco.svg";
       <div class="flex items-center">
         <!-- Using the original header logo or a text placeholder -->
         <!-- Note: Replace `logo` with the dark version of your logo if this SVG is white -->
-        <a href="/" class="flex items-center gap-2 group">
-          <div class="bg-[#00BFA5] p-2 rounded shrink-0">
-            <span class="text-white font-bold text-xl leading-none block"
-              >LN</span
-            >
-          </div>
+       <img src={logo.src} alt="Logo Kinesiología" class="w-12 h-12 px-2">
           <span
             class="text-slate-800 font-bold text-xl group-hover:text-[#00BFA5] transition-colors leading-none tracking-tight"
             >Kinesiología</span
@@ -31,29 +26,9 @@ import logo from "../../assets/icons/logoLNblanco.svg";
 
       {/* Social Links */}
       <div class="flex items-center gap-6">
+        
         <a
-          href="#"
-          class="text-slate-600 hover:text-[#00BFA5] transition-colors"
-          aria-label="Facebook"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="lucide lucide-facebook"
-            ><path
-              d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
-            ></path></svg
-          >
-        </a>
-        <a
-          href="#"
+          href="https://www.instagram.com/lnkinesiologia/"
           class="text-slate-600 hover:text-[#00BFA5] transition-colors"
           aria-label="Instagram"
         >
