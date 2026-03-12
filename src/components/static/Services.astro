@@ -9,7 +9,7 @@ const kinesiologiaServices = [
     link: "https://lnkinesiologia.site.agendapro.com/ar/sucursal/438392?fbclid=PAb21jcAQOyGRleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAadiWt7qF8JpBdmFJBK6rXJBuPjxiqVf372DtFCt3j8cshG8tdU0Xp91U0xHjQ_aem_6YX3DHUA-GxBmfvKHSOxEA&utm_content=link_in_bio&utm_medium=social&utm_source=ig",
   },
   {
-    title: "Reeducación Postural (RPG)",
+    title: "Trabajo Postural",
     description:
       "Terapia global para corregir alteraciones posturales, mejorar la alineación corporal y aliviar dolores de espalda.",
     link: "https://lnkinesiologia.site.agendapro.com/ar/sucursal/438392?fbclid=PAb21jcAQOyGRleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAadiWt7qF8JpBdmFJBK6rXJBuPjxiqVf372DtFCt3j8cshG8tdU0Xp91U0xHjQ_aem_6YX3DHUA-GxBmfvKHSOxEA&utm_content=link_in_bio&utm_medium=social&utm_source=ig",
@@ -67,16 +67,7 @@ const esteticaServices = [
   },
 ];
 
-// Group into chunks of 3 (for mobile/tablet slides)
-function chunk<T>(arr: T[], size: number): T[][] {
-  const result: T[][] = [];
-  for (let i = 0; i < arr.length; i += size)
-    result.push(arr.slice(i, i + size));
-  return result;
-}
-
-const kineChunks = chunk(kinesiologiaServices, 3);
-const esteticaChunks = chunk(esteticaServices, 3);
+// Removed chunking logic to allow better mobile layout
 ---
 
 <section id="servicios" class="services-section">
@@ -107,60 +98,61 @@ const esteticaChunks = chunk(esteticaServices, 3);
     </div>
 
     <!-- Content: Kinesiología -->
-    <div id="content-kine" class="services-slider">
-      {
-        kineChunks.map((group) => (
-          <div class="slide">
-            {group.map((service, idx) => (
-              <div class={`service-card reveal delay-${(idx % 3 + 1) * 100}`}>
-                <div class="card-top-bar" />
-                <div class="card-icon-wrapper">
-                  <img
-                    src={cardIcon.src}
-                    alt="Servicio Icon"
-                    class="card-icon"
-                  />
-                </div>
-                <h3 class="card-title">{service.title}</h3>
-                <p class="card-description">{service.description}</p>
-                <a href={service.link} class="card-link">
-                  Reservar turno <span>→</span>
-                </a>
+    <div class="slider-wrapper">
+      <button class="slider-arrow arrow-left" id="prev-btn" aria-label="Anterior">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+
+      <div id="content-kine" class="services-slider">
+        {
+          kinesiologiaServices.map((service, idx) => (
+            <div class={`service-card reveal delay-${(idx % 3 + 1) * 100}`}>
+              <div class="card-top-bar" />
+              <div class="card-icon-wrapper">
+                <img src={cardIcon.src} alt="Servicio Icon" class="card-icon" />
               </div>
-            ))}
-          </div>
-        ))
-      }
+              <h3 class="card-title">{service.title}</h3>
+              <p class="card-description">{service.description}</p>
+              <a href={service.link} class="card-link">
+                Reservar turno <span>→</span>
+              </a>
+            </div>
+          ))
+        }
+      </div>
+
+      <div id="content-estetica" class="services-slider hidden">
+        {
+          esteticaServices.map((service, idx) => (
+            <div class={`service-card reveal delay-${(idx % 4 + 1) * 100}`}>
+              <div class="card-top-bar" />
+              <div class="card-icon-wrapper">
+                <img src={cardIcon.src} alt="Servicio Icon" class="card-icon" />
+              </div>
+              <h3 class="card-title">{service.title}</h3>
+              <p class="card-description">{service.description}</p>
+              <a href={service.link} class="card-link">
+                Reservar turno <span>→</span>
+              </a>
+            </div>
+          ))
+        }
+      </div>
+
+      <button class="slider-arrow arrow-right" id="next-btn" aria-label="Siguiente">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
     </div>
 
-    <!-- Content: Estética -->
-    <div id="content-estetica" class="services-slider hidden">
-      {
-        esteticaChunks.map((group) => (
-          <div class="slide">
-            {group.map((service, idx) => (
-              <div class={`service-card reveal delay-${(idx % 4 + 1) * 100}`}>
-                <div class="card-top-bar" />
-                <div class="card-icon-wrapper">
-                  <img
-                    src={cardIcon.src}
-                    alt="Servicio Icon"
-                    class="card-icon"
-                  />
-                </div>
-                <h3 class="card-title">{service.title}</h3>
-                <p class="card-description">{service.description}</p>
-                <a href={service.link} class="card-link">
-                  Reservar turno <span>→</span>
-                </a>
-              </div>
-            ))}
-          </div>
-        ))
-      }
+    <!-- Swipe Hint -->
+    <div class="swipe-hint reveal">
+      <div class="swipe-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 5L15 12L10 19" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <span>Desliza para ver más</span>
     </div>
 
-    <!-- Dots (mobile + tablet) -->
+    <!-- Dots -->
     <div id="services-dots" class="services-dots"></div>
   </div>
 </section>
@@ -291,6 +283,13 @@ const esteticaChunks = chunk(esteticaServices, 3);
   }
 
   /* ─── Slider (mobile + tablet) ────────────────────────── */
+  .slider-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+
   .services-slider {
     display: flex;
     overflow-x: auto;
@@ -298,6 +297,18 @@ const esteticaChunks = chunk(esteticaServices, 3);
     scrollbar-width: none;
     -ms-overflow-style: none;
     gap: 1.25rem;
+    padding: 1rem 0;
+    padding-right: 2rem; /* Allow peek */
+    mask-image: linear-gradient(to right, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+  }
+
+  @media (min-width: 1024px) {
+    .services-slider {
+      mask-image: none;
+      -webkit-mask-image: none;
+      padding-right: 0;
+    }
   }
 
   .services-slider::-webkit-scrollbar {
@@ -306,6 +317,75 @@ const esteticaChunks = chunk(esteticaServices, 3);
 
   .services-slider.hidden {
     display: none;
+  }
+
+  /* ─── Arrows ─────────────────────────────────────────── */
+  .slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--color-secundario);
+    border: 1px solid #e2eaec;
+    color: var(--color-primario);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+
+  .slider-arrow:hover {
+    background: var(--color-primario);
+    color: white;
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .slider-arrow svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .arrow-left { left: -20px; }
+  .arrow-right { right: -20px; }
+
+  @media (min-width: 1280px) {
+    .slider-arrow {
+      display: flex;
+    }
+  }
+
+  /* ─── Swipe Hint ──────────────────────────────────── */
+  .swipe-hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    color: var(--color-primario);
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  @media (min-width: 1024px) {
+    .swipe-hint {
+      display: none;
+    }
+  }
+
+  .swipe-icon {
+    width: 24px;
+    height: 24px;
+    animation: swipeAnim 2s infinite;
+  }
+
+  @keyframes swipeAnim {
+    0%, 100% { transform: translateX(0); opacity: 0.5; }
+    50% { transform: translateX(10px); opacity: 1; }
   }
 
   .slide {
@@ -329,15 +409,12 @@ const esteticaChunks = chunk(esteticaServices, 3);
       overflow: visible;
       scroll-snap-type: none;
     }
-
-    /* "Unwrap" the slides so cards sit directly in the grid */
-    .slide {
-      display: contents;
-    }
   }
 
   /* ─── Card ────────────────────────────────────────────── */
   .service-card {
+    scroll-snap-align: center;
+    flex: 0 0 85%; /* Peek effect */
     position: relative;
     background: var(--color-secundario);
     border: 1px solid #e8f0f2;
@@ -350,9 +427,16 @@ const esteticaChunks = chunk(esteticaServices, 3);
       box-shadow 0.3s ease,
       transform 0.3s ease;
     overflow: hidden;
-    min-height: 160px;
+    min-height: 220px;
     min-width: 0;
     box-sizing: border-box;
+  }
+
+  @media (min-width: 1024px) {
+    .service-card {
+      flex: none;
+      scroll-snap-align: none;
+    }
   }
 
   .service-card:hover {
@@ -469,37 +553,41 @@ const esteticaChunks = chunk(esteticaServices, 3);
   const tabKine = document.getElementById("tab-kine")!;
   const tabEstetica = document.getElementById("tab-estetica")!;
   const contentKine = document.getElementById("content-kine") as HTMLElement;
-  const contentEstetica = document.getElementById(
-    "content-estetica",
-  ) as HTMLElement;
+  const contentEstetica = document.getElementById("content-estetica") as HTMLElement;
   const dotsContainer = document.getElementById("services-dots")!;
+  const prevBtn = document.getElementById("prev-btn") as HTMLButtonElement;
+  const nextBtn = document.getElementById("next-btn") as HTMLButtonElement;
+  const swipeHint = document.querySelector(".swipe-hint") as HTMLElement;
 
   function isSmall() {
     return window.innerWidth < 1024;
   }
 
+  function getActiveSlider() {
+    return contentKine.classList.contains("hidden") ? contentEstetica : contentKine;
+  }
+
   function buildDots(slider: HTMLElement) {
     dotsContainer.innerHTML = "";
-
     if (!isSmall()) {
       dotsContainer.classList.remove("visible");
       return;
     }
 
-    const slides = slider.querySelectorAll(".slide");
-    if (slides.length <= 1) {
+    const cards = slider.querySelectorAll(".service-card");
+    if (cards.length <= 1) {
       dotsContainer.classList.remove("visible");
       return;
     }
 
     dotsContainer.classList.add("visible");
-
-    slides.forEach((_, i) => {
+    cards.forEach((_, i) => {
       const dot = document.createElement("button");
       dot.className = "dot" + (i === 0 ? " active" : "");
-      dot.setAttribute("aria-label", `Página ${i + 1}`);
+      dot.setAttribute("aria-label", `Servicio ${i + 1}`);
       dot.addEventListener("click", () => {
-        slider.scrollTo({ left: i * slider.clientWidth, behavior: "smooth" });
+        const cardWidth = slider.querySelector(".service-card")!.clientWidth + 20; // width + gap
+        slider.scrollTo({ left: i * cardWidth, behavior: "smooth" });
       });
       dotsContainer.appendChild(dot);
     });
@@ -507,10 +595,17 @@ const esteticaChunks = chunk(esteticaServices, 3);
 
   function syncDots(slider: HTMLElement) {
     if (!isSmall()) return;
-    const index = Math.round(slider.scrollLeft / slider.clientWidth);
+    const cardWidth = slider.querySelector(".service-card")!.clientWidth + 20;
+    const index = Math.round(slider.scrollLeft / cardWidth);
     dotsContainer
       .querySelectorAll(".dot")
       .forEach((d, i) => d.classList.toggle("active", i === index));
+    
+    // Hide swipe hint after first scroll
+    if (slider.scrollLeft > 20 && swipeHint) {
+      swipeHint.style.opacity = "0";
+      setTimeout(() => swipeHint.style.display = "none", 500);
+    }
   }
 
   function setupSlider(slider: HTMLElement) {
@@ -518,6 +613,16 @@ const esteticaChunks = chunk(esteticaServices, 3);
     buildDots(slider);
     slider.onscroll = () => syncDots(slider);
   }
+
+  // Arrow Navigation logic
+  function scrollSlider(direction: number) {
+    const slider = getActiveSlider();
+    const scrollAmount = slider.clientWidth * 0.8;
+    slider.scrollBy({ left: direction * scrollAmount, behavior: "smooth" });
+  }
+
+  prevBtn?.addEventListener("click", () => scrollSlider(-1));
+  nextBtn?.addEventListener("click", () => scrollSlider(1));
 
   tabKine.addEventListener("click", () => {
     tabKine.className = "tab-btn tab-active";
@@ -539,9 +644,6 @@ const esteticaChunks = chunk(esteticaServices, 3);
   setupSlider(contentKine);
 
   window.addEventListener("resize", () => {
-    const active = contentKine.classList.contains("hidden")
-      ? contentEstetica
-      : contentKine;
-    buildDots(active);
+    setupSlider(getActiveSlider());
   });
 </script>
