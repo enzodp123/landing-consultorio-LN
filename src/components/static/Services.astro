@@ -82,7 +82,7 @@ const esteticaChunks = chunk(esteticaServices, 3);
 <section id="servicios" class="services-section">
   <div class="services-container">
     <!-- Header -->
-    <div class="services-header">
+    <div class="services-header reveal">
       <span class="services-label">ESPECIALIDADES</span>
       <h2 class="services-title">Servicios</h2>
       <p class="services-subtitle">
@@ -111,8 +111,8 @@ const esteticaChunks = chunk(esteticaServices, 3);
       {
         kineChunks.map((group) => (
           <div class="slide">
-            {group.map((service) => (
-              <div class="service-card">
+            {group.map((service, idx) => (
+              <div class={`service-card reveal delay-${(idx % 3 + 1) * 100}`}>
                 <div class="card-top-bar" />
                 <div class="card-icon-wrapper">
                   <img
@@ -138,8 +138,8 @@ const esteticaChunks = chunk(esteticaServices, 3);
       {
         esteticaChunks.map((group) => (
           <div class="slide">
-            {group.map((service) => (
-              <div class="service-card">
+            {group.map((service, idx) => (
+              <div class={`service-card reveal delay-${(idx % 4 + 1) * 100}`}>
                 <div class="card-top-bar" />
                 <div class="card-icon-wrapper">
                   <img

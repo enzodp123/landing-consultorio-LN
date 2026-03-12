@@ -32,7 +32,7 @@ const navItems = [
         }
       </ul>
       <a
-        href="/turno"
+        href="https://lnkinesiologia.site.agendapro.com/ar/sucursal/438392?fbclid=PAb21jcAQOyGRleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAadiWt7qF8JpBdmFJBK6rXJBuPjxiqVf372DtFCt3j8cshG8tdU0Xp91U0xHjQ_aem_6YX3DHUA-GxBmfvKHSOxEA&utm_content=link_in_bio&utm_medium=social&utm_source=ig"
         class="hidden xl:flex items-center justify-center bg-titulos rounded-lg px-6 py-2.5 text-base font-bold text-white whitespace-nowrap"
       >
         Reservar Turno
@@ -42,7 +42,9 @@ const navItems = [
       <button
         id="mobile-menu-btn"
         class="xl:hidden flex flex-col justify-center items-center w-8 h-8 focus:outline-none"
-        aria-label="Toggle mobile menu"
+        aria-label="Abrir menú de navegación"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
       >
         <span
           class="bg-titulos block transition-all duration-300 ease-out h-[3px] w-6 rounded-sm -translate-y-1.5"
@@ -117,13 +119,18 @@ const navItems = [
 
   const toggleMenu = () => {
     const isMenuOpen = !mobileMenu?.classList.contains("translate-x-full");
+    const nextState = !isMenuOpen;
 
     // Toggle menu
     mobileMenu?.classList.toggle("translate-x-full");
     document.body.classList.toggle("overflow-hidden");
+    
+    // Update ARIA
+    mobileBtn?.setAttribute("aria-expanded", nextState.toString());
+    mobileBtn?.setAttribute("aria-label", nextState ? "Cerrar menú de navegación" : "Abrir menú de navegación");
 
     // Animate hamburger to X
-    if (!isMenuOpen) {
+    if (nextState) {
       line1?.classList.replace("-translate-y-1.5", "translate-y-0");
       line1?.classList.add("rotate-45");
       line2?.classList.replace("opacity-100", "opacity-0");

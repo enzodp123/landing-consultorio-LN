@@ -23,13 +23,41 @@ import "../styles/global.css";
       property="og:description"
       content="Kinesiología LN ofrece servicios profesionales de rehabilitación traumatológica y estética. Tratamientos personalizados particulares y por obras sociales."
     />
+    <meta
+      name="keywords"
+      content="kinesiología, rehabilitación, traumatología, estética, Rosario, LN kinesiología, fisioterapia, RPG"
+    />
+    <meta name="robots" content="index, follow" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Kinesiología LN" />
   </head>
   <body>
-    <main>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    <main id="main-content">
       <slot />
     </main>
+
+    <!-- Floating WhatsApp Button -->
+    <a
+      id="wsp-float"
+      href="https://wa.me/543415711087?text=Hola%2C%20quisiera%20consultar%20por%20una%20sesi%C3%B3n"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Contactar por WhatsApp"
+    >
+      <span class="wsp-tooltip">¡Consultá por WhatsApp!</span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 32 32"
+        class="wsp-icon"
+        aria-hidden="true"
+      >
+        <path
+          d="M16 0C7.163 0 0 7.163 0 16c0 2.826.737 5.48 2.027 7.789L0 32l8.418-2.004A15.934 15.934 0 0 0 16 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.27 13.27 0 0 1-6.77-1.852l-.486-.289-5.002 1.19 1.227-4.865-.317-.5A13.293 13.293 0 0 1 2.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.293-9.955c-.4-.2-2.364-1.166-2.73-1.3-.366-.133-.632-.2-.9.2-.266.4-1.033 1.3-1.266 1.566-.233.267-.466.3-.866.1-.4-.2-1.687-.622-3.214-1.982-1.188-1.059-1.99-2.367-2.224-2.767-.233-.4-.025-.616.175-.815.18-.178.4-.466.6-.7.2-.233.267-.4.4-.666.133-.267.067-.5-.033-.7-.1-.2-.9-2.166-1.233-2.966-.324-.78-.655-.674-.9-.686l-.766-.013c-.267 0-.7.1-1.066.5-.366.4-1.4 1.366-1.4 3.332s1.433 3.866 1.633 4.132c.2.267 2.82 4.304 6.833 6.033.955.412 1.7.658 2.28.843.957.305 1.83.262 2.518.159.768-.115 2.364-.966 2.697-1.9.333-.933.333-1.733.233-1.9-.1-.166-.366-.266-.766-.466z"
+          fill="currentColor"
+        />
+      </svg>
+    </a>
   </body>
 </html>
 
@@ -40,5 +68,173 @@ import "../styles/global.css";
     width: 100%;
     min-height: 100vh;
     font-family: Poppins, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  /* Skip Link Style */
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: #09A7A3;
+    color: white;
+    padding: 8px 16px;
+    z-index: 10000;
+    transition: top 0.3s;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 0 0 8px 0;
+  }
+
+  .skip-link:focus {
+    top: 0;
+  }
+
+  /* ── Floating WhatsApp Button ── */
+  #wsp-float {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background-color: #25D366;
+    color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
+    text-decoration: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    /* pulse ring */
+    animation: wsp-pulse 2.5s infinite;
+  }
+
+  #wsp-float:hover {
+    transform: scale(1.12);
+    box-shadow: 0 6px 28px rgba(37, 211, 102, 0.65);
+    animation: none;
+  }
+
+  .wsp-icon {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+  }
+
+  /* Tooltip */
+  .wsp-tooltip {
+    position: absolute;
+    right: 72px;
+    background: #fff;
+    color: #1a1a2e;
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+    padding: 6px 14px;
+    border-radius: 20px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(8px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  .wsp-tooltip::after {
+    content: "";
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 6px solid transparent;
+    border-left-color: #fff;
+    border-right-width: 0;
+  }
+
+  #wsp-float:hover .wsp-tooltip {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Pulse animation */
+  @keyframes wsp-pulse {
+    0%   { box-shadow: 0 0 0 0   rgba(37, 211, 102, 0.5); }
+    70%  { box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0   rgba(37, 211, 102, 0); }
+  }
+
+  /* --- Reveal animations --- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    visibility: hidden;
+    will-change: opacity, transform;
+  }
+
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
+
+  /* Delay utilities for staggered reveals */
+  .delay-100 { transition-delay: 100ms; }
+  .delay-200 { transition-delay: 200ms; }
+  .delay-300 { transition-delay: 300ms; }
+  .delay-400 { transition-delay: 400ms; }
+  .delay-500 { transition-delay: 500ms; }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    #wsp-float {
+      bottom: 20px;
+      right: 18px;
+      width: 52px;
+      height: 52px;
+    }
+
+    .wsp-icon {
+      width: 26px;
+      height: 26px;
+    }
+
+    /* hide tooltip on small screens (tap = action) */
+    .wsp-tooltip {
+      display: none;
+    }
   }
 </style>
+
+<script>
+  // High-performance Intersection Observer for scroll reveal animations
+  const observerOptions = {
+    threshold: 0.15, // Trigger when 15% visible
+    rootMargin: '0px 0px -50px 0px' // Slight offset from bottom
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        // Once visible, we can stop observing to save resources
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Initialize observer on all elements with .reveal class
+  function initReveal() {
+    const revealElements = document.querySelectorAll('.reveal');
+    revealElements.forEach(el => observer.observe(el));
+  }
+
+  // Run on first load and after potential dynamic content changes
+  document.addEventListener('DOMContentLoaded', initReveal);
+  
+  // Astro-specific: Handle View Transitions if they were used 
+  // (not used here but good practice)
+  document.addEventListener('astro:page-load', initReveal);
+</script>
